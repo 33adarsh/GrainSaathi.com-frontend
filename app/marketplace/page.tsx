@@ -4,7 +4,7 @@ import { Filter, Search, SlidersHorizontal, SortDesc } from "lucide-react";
 
 /* ─── SEO Metadata ─── */
 export const metadata: Metadata = {
-  title: "Live Marketplace | Grain Saathi",
+  title: "Marketplace | Buy & Sell Grains",
   description:
     "Browse live grain listings from verified farmers across India. Connect directly, negotiate prices, and trade securely on Grain Saathi.",
 };
@@ -128,8 +128,8 @@ function PaginationButton({
 /* ─── Page component ─── */
 export default function Marketplace() {
   const listings = MARKETPLACE_LISTINGS;
-  const totalPages = 3; // placeholder until real pagination
-  const currentPage = 1;
+  const totalPages: number = 3; // placeholder until real pagination
+  const currentPage: number = 1;
 
   return (
     <div className="relative bg-gradient-to-b from-green-50/40 via-white to-white min-h-screen py-8 overflow-hidden">

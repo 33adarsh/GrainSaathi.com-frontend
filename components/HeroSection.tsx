@@ -3,8 +3,11 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight, Sprout, TrendingUp, Users } from "lucide-react";
+import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function HeroSection() {
+  const { t, language } = useLanguage();
   const statsRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
 
@@ -42,22 +45,31 @@ export default function HeroSection() {
           {/* Badge */}
           <div className="hero-fade-up inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-100/80 text-green-700 font-medium text-sm mb-6 border border-green-200/60 backdrop-blur-sm shadow-sm">
             <Sprout className="h-4 w-4" />
-            <span>Empowering Indian Agriculture</span>
+            <span>{t("hero.badge")}</span>
           </div>
 
           {/* Heading */}
           <h1 className="hero-fade-up text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-800 tracking-tight mb-6 leading-[1.1]">
-            Direct Trading for <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">
-              Quality Grains
-            </span>
+            {language === "en" ? (
+              <>
+                Direct Trading for <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">
+                  Quality Grains
+                </span>
+              </>
+            ) : (
+              <>
+                गुणवत्तापूर्ण अनाज का <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-emerald-500">
+                  सीधा व्यापार
+                </span>
+              </>
+            )}
           </h1>
 
           {/* Subtitle */}
           <p className="hero-fade-up text-lg sm:text-xl text-slate-500 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-            Grain Saathi connects farmers directly with wholesale buyers and
-            agro companies. Fair prices, transparent trading, and secure
-            transactions for everyone.
+            {t("hero.subtitle")}
           </p>
 
           {/* CTA Buttons */}
@@ -66,27 +78,27 @@ export default function HeroSection() {
               href="/marketplace"
               className="group px-8 py-3.5 rounded-xl bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white font-semibold text-lg transition-all duration-300 shadow-lg shadow-green-600/25 hover:shadow-xl hover:shadow-green-600/30 flex items-center justify-center gap-2 hover:-translate-y-0.5"
             >
-              Browse Marketplace
+              {t("hero.browse")}
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
-
+ 
             <Link
               href="/login"
               className="px-8 py-3.5 rounded-xl bg-white/70 backdrop-blur-sm border border-green-200/60 hover:border-green-400 text-green-700 hover:text-green-800 font-semibold text-lg transition-all duration-300 flex items-center justify-center hover:-translate-y-0.5 hover:shadow-md"
             >
-              Join the Network
+              {t("hero.join")}
             </Link>
           </div>
-
+ 
           {/* Stats */}
           <div
             ref={statsRef}
             className="hero-stagger grid grid-cols-3 gap-6 mt-14 pt-8 border-t border-green-100/80"
           >
             {[
-              { icon: Users, value: "10k+", label: "Active Farmers" },
-              { icon: TrendingUp, value: "5M+", label: "Tons Traded" },
-              { icon: Sprout, value: "100%", label: "Quality Assured" },
+              { icon: Users, value: "10k+", label: t("hero.activeFarmers") },
+              { icon: TrendingUp, value: "5M+", label: t("hero.tonsTraded") },
+              { icon: Sprout, value: "100%", label: t("hero.qualityAssured") },
             ].map((stat, i) => (
               <div key={i} className="hero-stagger-item">
                 <div className="flex items-center gap-2 text-green-600 mb-1 justify-center lg:justify-start">
@@ -108,36 +120,44 @@ export default function HeroSection() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-4 pt-12">
               <div className="hero-stagger-item group relative rounded-2xl overflow-hidden shadow-lg shadow-green-900/10 ring-1 ring-white/60">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1595085352132-723522a1ce01?q=80&w=800&auto=format&fit=crop"
                   alt="Farmer in field"
                   className="object-cover h-48 w-full transition-transform duration-500 group-hover:scale-105"
+                  width={800}
+                  height={600}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="hero-stagger-item group relative rounded-2xl overflow-hidden shadow-lg shadow-green-900/10 ring-1 ring-white/60">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1586201375761-83865001e31c?q=80&w=800&auto=format&fit=crop"
                   alt="Wheat grains"
                   className="object-cover h-64 w-full transition-transform duration-500 group-hover:scale-105"
+                  width={800}
+                  height={600}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </div>
             <div className="space-y-4">
               <div className="hero-stagger-item group relative rounded-2xl overflow-hidden shadow-lg shadow-green-900/10 ring-1 ring-white/60">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1534951474654-87823058c487?q=80&w=800&auto=format&fit=crop"
                   alt="Grain sacks"
                   className="object-cover h-64 w-full transition-transform duration-500 group-hover:scale-105"
+                  width={800}
+                  height={600}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <div className="hero-stagger-item group relative rounded-2xl overflow-hidden shadow-lg shadow-green-900/10 ring-1 ring-white/60">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop"
                   alt="Agriculture landscape"
                   className="object-cover h-48 w-full transition-transform duration-500 group-hover:scale-105"
+                  width={800}
+                  height={600}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>

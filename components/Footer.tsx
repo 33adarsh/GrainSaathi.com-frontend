@@ -1,7 +1,12 @@
+"use client";
+
 import Link from 'next/link';
 import { Facebook, Instagram, Leaf, MapPin, Phone, Twitter, Mail } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/dashboard')) return null;
   return (
     <footer className="relative bg-slate-900 text-slate-400 overflow-hidden">
       {/* Decorative green glow */}

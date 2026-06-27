@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import HeroSection from '@/components/HeroSection';
 import ProductCard from '@/components/ProductCard';
 import LoginSection from '@/components/LoginSection';
 import { Leaf, ShieldCheck, TrendingUp, Users } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: "Grain Saathi | Direct Grain Trading for Indian Farmers",
+  description: "Grain Saathi is an online agriculture commodity trading platform connecting farmers, wholesale buyers, and agro companies directly.",
+};
 
 const featuredProducts = [
   {
